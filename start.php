@@ -13,29 +13,6 @@
 	// Init
 	function publicfilter_init() {
 		global $CONFIG;
-		
-		// Page handler
-		//register_page_handler('publicfilter','publicfilter_page_handler');
-		
-		// Register a handler for creating objects
-		//register_elgg_event_handler('create', 'object', 'publicfilter_create_event_listener');
-		
-		// Register a handler for updating 
-		//register_elgg_event_handler('update', 'all', 'publicfilter_update_event_listener');
-	}
-	
-	/**
-	 * Object created, check for public access
-	 */
-	function publicfilter_create_event_listener($event, $object_type, $object) {
-		return true;
-	}
-	
-	/**
-	 * Object updated, check for public access
-	 */
-	function publicfilter_update_event_listener($event, $object_type, $object) {
-		return true;
 	}
 	
 	/** 
@@ -49,7 +26,7 @@
 		$users = explode("\n", $users);
 		$users_array = array();
 		foreach ($users as $idx => $user) {
-			$users_array[] = $user;
+			$users_array[] = trim($user);
 		}
 		return $users_array;
 	}

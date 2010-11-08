@@ -14,6 +14,7 @@
 		
 		// Titles/Label
 		'publicfilter:label:userlist' => "User's to filter",
+		'publicfilter:label:filterusers' => "Prevent specific user's from creating public content: ",
 				
 		// Other
 

@@ -11,7 +11,12 @@
 	 */
 ?>
 <p>
-    <label><?php echo elgg_echo('publicfilter:label:userlist'); ?></label><br />
+	<label><?php echo elgg_echo('publicfilter:label:filterusers'); ?></label>
+	<select name="params[filterenabled]">
+ 		<option value="1" <?php if ($vars['entity']->filterenabled == 1) echo " selected=\"yes\" "; ?>>Yes</option>
+ 		<option value="0" <?php if ($vars['entity']->filterenabled == 0) echo " selected=\"yes\" "; ?>>No</option>
+ 	</select>
+	<br />
     <?php 
 	echo elgg_view('input/plaintext', array(
 										'internalname' => 'params[userlist]', 

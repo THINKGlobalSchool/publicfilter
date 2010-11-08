@@ -19,7 +19,7 @@
 $filter_users = publicfilter_get_users();
 $user = get_loggedin_user();
 
-if (in_array($user->username, $filter_users)) {
+if (get_plugin_setting('filterenabled','publicfilter') && in_array($user->username, $filter_users)) {
 	$filtered = true;
 }
 
