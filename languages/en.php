@@ -15,7 +15,18 @@
 		// Titles/Label
 		'publicfilter:label:userlist' => "User's to filter",
 		'publicfilter:label:filterusers' => "Prevent specific user's from creating public content: ",
-				
+		'publicfilter:label:enablemods' => 'Enabled moderators',
+			
+		// Notifications
+		'publicfilter:notifymod:subject' => 'Spot Public Content Notice',
+		'publicfilter:notifymod:body' => '%s has marked content as public. 
+
+Object type: %s
+		
+Click here to view: %s
+
+',
+			
 		// Other
 
 	);

@@ -24,3 +24,17 @@
 										); 
 	?>
 </p>
+<p>
+	<label><?php echo elgg_echo('publicfilter:label:enablemods'); ?></label>
+	<select name="params[modsenabled]">
+ 		<option value="1" <?php if ($vars['entity']->modsenabled == 1) echo " selected=\"yes\" "; ?>>Yes</option>
+ 		<option value="0" <?php if ($vars['entity']->modsenabled == 0) echo " selected=\"yes\" "; ?>>No</option>
+ 	</select>
+	<br />
+    <?php 
+	echo elgg_view('input/plaintext', array(
+										'internalname' => 'params[modlist]', 
+										'value' => $vars['entity']->modlist)
+										); 
+	?>
+</p>
