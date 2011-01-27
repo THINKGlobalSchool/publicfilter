@@ -22,6 +22,7 @@
 		'publicfilter:notifymod:body' => '%s has marked content as public. 
 
 Object type: %s
+Object subtype: %s
 		
 Click here to view: %s
 

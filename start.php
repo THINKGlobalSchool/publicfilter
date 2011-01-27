@@ -14,11 +14,11 @@
 	function publicfilter_init() {
 		global $CONFIG;
 		
-		// Listen to create events
-		register_elgg_event_handler('create','all','publicfilter_access_listener');
+		// Listen to create events, setting low priority
+		register_elgg_event_handler('create','all','publicfilter_access_listener', 2000);
 		
-		// Listen to update event
-		register_elgg_event_handler('update','all','publicfilter_access_listener');
+		// Listen to update event, setting low priority
+		register_elgg_event_handler('update','all','publicfilter_access_listener', 2000);
 	}
 	
 	/** 
@@ -59,8 +59,19 @@
 	 * Listen to the create/update events and fire off a notification if moderation is enabled
 	 */
 	function publicfilter_access_listener($event, $object_type, $object) {	
-		$object_type_exceptions = array('user', 'metadata');
-		$object_subtype_exceptions = array('plugin');
+		$object_type_exceptions = array(
+			'user', 
+			'metadata'
+		);
+		
+		$object_subtype_exceptions = array(
+			'plugin', 
+			'messages', 
+			'test_subtype', 
+			'testing', 
+			'page_top', 
+			'widget'
+		);
 		
 		// Groups are always public, so notify on create, but not on updates
 		if ($event == 'update') {
@@ -68,9 +79,9 @@
 		}
 		
 		if (get_plugin_setting('modsenabled','publicfilter') 
-			&& $object->access_id == ACCESS_PUBLIC 
 			&& !in_array($object_type, $object_type_exceptions)
-			&& !in_array($object->getSubtype(), $object_subtype_exceptions)) {
+			&& !in_array($object->getSubtype(), $object_subtype_exceptions)
+			&& $object->access_id == ACCESS_PUBLIC) {
 			$mods = publicfilter_get_mods();
 			
 			global $CONFIG;
@@ -81,7 +92,7 @@
 					notify_user( 
 						$mod->getGUID(), $CONFIG->site->guid, 
 						elgg_echo('publicfilter:notifymod:subject'), 
-						elgg_echo('publicfilter:notifymod:body', array($owner->name, $object_type, $object->getURL()))
+						elgg_echo('publicfilter:notifymod:body', array($owner->name, $object_type, $object->getSubtype(), $object->getURL()))
 					);
 				}
 			}
