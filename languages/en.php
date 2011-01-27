@@ -16,9 +16,9 @@
 		// Titles/Label
 		'admin:plugin_settings:publicfilter' => 'Public Filter Settings',
 		'publicfilter:label:userlist' => "User's to filter",
-		'publicfilter:label:filterusers' => "Prevent specific user's from creating public content  (by username)",
-		'publicfilter:label:enablemods' => 'Enabled moderators (by username)',
-		'publicfilter:label:subtypes' => 'Filter these subtypes',
+		'publicfilter:label:filterusers' => "Prevent specific user's from creating public content  (enter below by username)",
+		'publicfilter:label:enablemods' => 'Notify moderators that public content has been created (enter by username)',
+		'publicfilter:label:subtypes' => 'Notify moderators for these subtypes (one per line)',
 			
 		// Notifications
 		'publicfilter:notifymod:subject' => 'Spot Public Content Notice',
