@@ -69,7 +69,6 @@
 		$object_allowed_subtypes = array(
 			'thewire', 
 			'blog', 
-			'image', 
 			'album', 
 			'file', 
 			'feedback',
@@ -105,7 +104,7 @@
 					notify_user( 
 						$mod->getGUID(), $CONFIG->site->guid, 
 						elgg_echo('publicfilter:notifymod:subject'), 
-						elgg_echo('publicfilter:notifymod:body', array($owner->name, $object_type, $object->getSubtype(), $object->getURL()))
+						elgg_echo('publicfilter:notifymod:body', array($object_type, $object->getSubtype(), $object->getURL()))
 					);
 				}
 			}
