@@ -38,3 +38,14 @@
 										); 
 	?>
 </p>
+<p>
+	<label><?php echo elgg_echo('publicfilter:label:subtypes'); ?></label>
+	<br />
+    <?php 
+	echo elgg_view('input/plaintext', array(
+										'internalname' => 'params[subtypes]', 
+										'value' => $vars['entity']->subtypes)
+										); 
+	?>
+</p>
+

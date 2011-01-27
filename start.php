@@ -42,7 +42,7 @@
 	 * 
 	 */
 	function publicfilter_get_mods() {
-		// Get contacts from plugin settings
+		// Get mods from plugin settings
 		$users = get_plugin_setting('modlist','publicfilter');
 		$users = explode("\n", $users);
 		$users_array = array();
@@ -52,6 +52,20 @@
 			
 		}
 		return $users_array;
+	}
+	
+	/** 
+	 * Get the specified subtypes to filter
+	 */
+	function publicfilter_get_subtypes() {
+		// Get subtypes from plugin settings
+		$subtypes = get_plugin_setting('subtypes','publicfilter');		
+		$subtypes = explode("\n", $subtypes);
+		$subtypes_array = array();
+		foreach ($subtypes as $idx => $subtype) {
+			$subtypes_array[] = trim($subtype);
+		}
+		return $subtypes_array;
 	}
 	
 	
@@ -66,24 +80,7 @@
 			'metadata'
 		);
 		
-		$object_allowed_subtypes = array(
-			'thewire', 
-			'blog', 
-			'album', 
-			'file', 
-			'feedback',
-			'simplekaltura_video',
-			'rubric',
-			'resourcerequest',
-			'document',
-			'groupforumtopic',
-			'todo',
-			'batch',
-			'announcement',
-			'shared_doc',
-			'ubertag',
-			'poll'
-		);
+		$object_allowed_subtypes = publicfilter_get_subtypes();
 		
 		// Groups are always public, so notify on create, but not on updates
 		if ($event == 'update') {
