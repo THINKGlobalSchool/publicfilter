@@ -19,7 +19,8 @@
 			
 		// Notifications
 		'publicfilter:notifymod:subject' => 'Spot Public Content Notice',
-		'publicfilter:notifymod:body' => '%s has marked content as public. 
+		'publicfilter:notifymod:body' => '%s has marked content as public.
+		 
 
 Object type: %s
 Object subtype: %s
