@@ -58,8 +58,9 @@
 	/**
 	 * Listen to the create/update events and fire off a notification if moderation is enabled
 	 */
-	function publicfilter_access_listener($event, $object_type, $object) {
+	function publicfilter_access_listener($event, $object_type, $object) {	
 		$object_type_exceptions = array('user', 'metadata');
+		$object_subtype_exceptions = array('plugin');
 		
 		// Groups are always public, so notify on create, but not on updates
 		if ($event == 'update') {
@@ -68,19 +69,21 @@
 		
 		if (get_plugin_setting('modsenabled','publicfilter') 
 			&& $object->access_id == ACCESS_PUBLIC 
-			&& !in_array($object_type, $object_type_exceptions)) {
+			&& !in_array($object_type, $object_type_exceptions)
+			&& !in_array($object->getSubtype(), $object_subtype_exceptions)) {
 			$mods = publicfilter_get_mods();
 			
 			global $CONFIG;
 			
 			$owner = get_entity($object->owner_guid);
-			
 			foreach($mods as $mod) {
-				notify_user( 
-					$mod->getGUID(), $CONFIG->site->guid, 
-					elgg_echo('publicfilter:notifymod:subject'), 
-					elgg_echo('publicfilter:notifymod:body', array($owner->name, $object_type, $object->getURL()))
-				);
+				if ($mod) {
+					notify_user( 
+						$mod->getGUID(), $CONFIG->site->guid, 
+						elgg_echo('publicfilter:notifymod:subject'), 
+						elgg_echo('publicfilter:notifymod:body', array($owner->name, $object_type, $object->getURL()))
+					);
+				}
 			}
 		}
 	}
