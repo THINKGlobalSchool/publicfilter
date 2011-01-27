@@ -59,18 +59,31 @@
 	 * Listen to the create/update events and fire off a notification if moderation is enabled
 	 */
 	function publicfilter_access_listener($event, $object_type, $object) {	
+		global $CONFIG;
+		
 		$object_type_exceptions = array(
 			'user', 
 			'metadata'
 		);
 		
-		$object_subtype_exceptions = array(
-			'plugin', 
-			'messages', 
-			'test_subtype', 
-			'testing', 
-			'page_top', 
-			'widget'
+		$object_allowed_subtypes = array(
+			'thewire', 
+			'blog', 
+			'image', 
+			'album', 
+			'file', 
+			'feedback',
+			'simplekaltura_video',
+			'rubric',
+			'resourcerequest',
+			'document',
+			'groupforumtopic',
+			'todo',
+			'batch',
+			'announcement',
+			'shared_doc',
+			'ubertag',
+			'poll'
 		);
 		
 		// Groups are always public, so notify on create, but not on updates
@@ -80,7 +93,7 @@
 		
 		if (get_plugin_setting('modsenabled','publicfilter') 
 			&& !in_array($object_type, $object_type_exceptions)
-			&& !in_array($object->getSubtype(), $object_subtype_exceptions)
+			&& in_array($object->getSubtype(), $object_allowed_subtypes)
 			&& $object->access_id == ACCESS_PUBLIC) {
 			$mods = publicfilter_get_mods();
 			
