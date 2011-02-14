@@ -24,7 +24,9 @@
 		'publicfilter:notifymod:subject' => 'Spot Public Content Notice',
 		'publicfilter:notifymod:body' => 'Spot content has been marked public.
 		 
-
+User: %s
+Object title: %s
+Object owner: %s
 Object type: %s
 Object subtype: %s
 		

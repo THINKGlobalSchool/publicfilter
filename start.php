@@ -95,13 +95,26 @@
 			
 			global $CONFIG;
 			
+			
+			$user = get_loggedin_user();
+			
 			$owner = get_entity($object->owner_guid);
+			
+			// Check for a standard name/title field
+			if ($object->name) {
+				$title = $object->name;
+			} else if ($object->title) {
+				$title = $object->title;
+			} else { 
+				$title = 'n/a'; // It's possible that the object has none, ie: thewire
+			}
+			
 			foreach($mods as $mod) {
 				if ($mod) {
 					notify_user( 
 						$mod->getGUID(), $CONFIG->site->guid, 
 						elgg_echo('publicfilter:notifymod:subject'), 
-						elgg_echo('publicfilter:notifymod:body', array($object_type, $object->getSubtype(), $object->getURL()))
+						elgg_echo('publicfilter:notifymod:body', array($user->name, $title, $owner->name, $object_type, $object->getSubtype(), $object->getURL()))
 					);
 				}
 			}
