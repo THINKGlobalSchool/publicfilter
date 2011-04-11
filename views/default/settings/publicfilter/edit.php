@@ -19,7 +19,7 @@
 	<br />
     <?php 
 	echo elgg_view('input/plaintext', array(
-										'internalname' => 'params[userlist]', 
+										'name' => 'params[userlist]', 
 										'value' => $vars['entity']->userlist)
 										); 
 	?>
@@ -33,7 +33,7 @@
 	<br />
     <?php 
 	echo elgg_view('input/plaintext', array(
-										'internalname' => 'params[modlist]', 
+										'name' => 'params[modlist]', 
 										'value' => $vars['entity']->modlist)
 										); 
 	?>
@@ -43,7 +43,7 @@
 	<br />
     <?php 
 	echo elgg_view('input/plaintext', array(
-										'internalname' => 'params[subtypes]', 
+										'name' => 'params[subtypes]', 
 										'value' => $vars['entity']->subtypes)
 										); 
 	?>
