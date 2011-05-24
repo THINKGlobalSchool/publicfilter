@@ -4,6 +4,7 @@
 	<author>Jeff Tilson</author>
 	<version>1.8</version>
 	<category>admin</category>
+	<category>tgs</category>
 	<blurb>Public content filtering features</blurb>
 	<description>Provided public content filtering features</description>
 	<website>http://www.thinkglobalschool.org</website>
